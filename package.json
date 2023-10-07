@@ -25,7 +25,7 @@
   "dependencies": {
     "nodejs-mobile-gyp": "0.3.1",
     "tar.gz2": "1.0.0",
-    "xcode": "2.1.0"
+    "xcode": "3.0.1"
   },
   "homepage": "https://github.com/okhiroyuki/nodejs-mobile-cordova",
   "repository": {
