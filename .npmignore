@@ -2,6 +2,8 @@
 .eslintignore
 .eslintrc.yml
 .jshinrc
+.node-version
+.editorconfig
 
 # Git
 .git
