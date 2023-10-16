@@ -9,7 +9,7 @@
     ]
   },
   "scripts": {
-    "test:android": "cd testapp && npm i && cordova prepare android && cordova build"
+    "test:android": "cd testapp && npm i && cordova platform remove android && cordova platform add android && cordova prepare android && cordova build"
   },
   "keywords": [
     "cordova",
