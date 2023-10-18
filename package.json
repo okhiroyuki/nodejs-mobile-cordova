@@ -9,6 +9,7 @@
     ]
   },
   "scripts": {
+    "build:node": "node zipLibNode.js",
     "test:android": "cd testapp && npm i && cordova platform remove android && cordova platform add android && cordova prepare android && cordova build"
   },
   "keywords": [
