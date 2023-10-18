@@ -10,7 +10,10 @@
   },
   "scripts": {
     "build:node": "node zipLibNode.js",
-    "test:android": "cd testapp && npm i && cordova platform remove android && cordova platform add android && cordova prepare android && cordova build"
+    "test:clean": "rimraf testapp/node_modules testapp/plugins testapp/platforms testapp/temp-module-copy",
+    "test:install": "cd testapp && npm i",
+    "test:android": "cd testapp && cordova platform add android && cordova prepare android && cordova build",
+    "test:build": "run-s test:clean test:install test:android"
   },
   "keywords": [
     "cordova",
@@ -45,5 +48,9 @@
         "cordova-android": ">=12.0.0"
       }
     }
+  },
+  "devDependencies": {
+    "npm-run-all2": "^6.1.1",
+    "rimraf": "^5.0.5"
   }
 }
