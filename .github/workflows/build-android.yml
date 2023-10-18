@@ -24,6 +24,7 @@ jobs:
           sudo npm i cordova -g
       - name: npm install, build, and test
         run: |
+          npm ci
           npm run test:build --if-present
         env:
           CI: true
