@@ -42,7 +42,7 @@ function patchPackageJSONNodeGypBuild(packageJSONPath) {
     if (packageJSON?.scripts?.install?.includes("node-gyp-build")) {
       packageJSON.scripts.install = packageJSON.scripts.install.replace(
         /node-gyp-build(?!-)/g,
-        "node-gyp-build-mobile"
+        "$PROJECT_DIR/../node_modules/.bin/node-gyp-build-mobile"
       );
       fs.writeFileSync(packageJSONPath, JSON.stringify(packageJSON, null, 2));
     }
