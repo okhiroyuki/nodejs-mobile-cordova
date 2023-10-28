@@ -12,8 +12,8 @@ if (_compileNativeModulesSdkVersion<24) {
 }
 
 android {
-    minSdkVersion _nodeMinSdkVersion
     defaultConfig {
+        minSdkVersion _nodeMinSdkVersion
         externalNativeBuild {
             cmake {
                 cppFlags ""
