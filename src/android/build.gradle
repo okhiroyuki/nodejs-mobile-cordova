@@ -1,12 +1,18 @@
-ext.cdvMinSdkVersion = 24
-
 buildscript {
     repositories {
         jcenter()
     }
 }
 
+def _nodeMinSdkVersion = ((rootProject?.ext?.properties?.minSdkVersion) ?: 24)
+def _compileNativeModulesSdkVersion = _nodeMinSdkVersion;
+if (_compileNativeModulesSdkVersion<24) {
+    // 24 is the minimum sdk version Node is built with.
+    _compileNativeModulesSdkVersion=24;
+}
+
 android {
+    minSdkVersion _nodeMinSdkVersion
     defaultConfig {
         externalNativeBuild {
             cmake {
