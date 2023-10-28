@@ -4,20 +4,12 @@ buildscript {
     }
 }
 
-def _nodeMinSdkVersion = ((rootProject?.ext?.properties?.minSdkVersion) ?: 24)
-def _compileNativeModulesSdkVersion = _nodeMinSdkVersion;
-if (_compileNativeModulesSdkVersion<24) {
-    // 24 is the minimum sdk version Node is built with.
-    _compileNativeModulesSdkVersion=24;
-}
-
-
+def _nodeMinSdkVersion = 24
+ext.cdvMinSdkVersion = _nodeMinSdkVersion
+def _compileNativeModulesSdkVersion=_nodeMinSdkVersion;
 
 android {
-    ndkVersion ((rootProject?.ext?.ndkVersion) ?: "24.0.8215888")
-
     defaultConfig {
-        minSdkVersion _nodeMinSdkVersion
         externalNativeBuild {
             cmake {
                 cppFlags ""
