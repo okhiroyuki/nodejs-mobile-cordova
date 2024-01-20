@@ -16,10 +16,11 @@ jobs:
         with:
           node-version: "20"
       - uses: JS-DevTools/npm-publish@v3
+        id: publish
         with:
           token: ${{ secrets.NPM_TOKEN }}
       - name: Create Release
-        if: steps.publish.outputs.type != 'none'
+        if: ${{ steps.publish.outputs.type }}
         id: create_release
         uses: actions/create-release@v1
         env:
