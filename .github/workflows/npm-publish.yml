@@ -2,15 +2,14 @@ name: npm publish
 
 on:
   workflow_run:
-    workflows:
-      - Build Android Project
-    branches: main
-    types:
-      - "completed"
+    workflows: [Build Android Project]
+    branches: [main]
+    types: [completed]
 
 jobs:
   publish:
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4

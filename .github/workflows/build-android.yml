@@ -2,7 +2,7 @@ name: Build Android Project
 on:
   pull_request:
   push:
-    branches: main
+    branches: [main]
 
 jobs:
   build:
