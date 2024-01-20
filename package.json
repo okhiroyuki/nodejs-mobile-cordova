@@ -1,12 +1,11 @@
 {
   "name": "@red-mobile/nodejs-mobile-cordova",
-  "version": "3.3.0",
+  "version": "3.2.0",
   "description": "Node.js for Mobile Apps Cordova plugin",
   "cordova": {
     "id": "@red-mobile/nodejs-mobile-cordova",
     "platforms": [
-      "android",
-      "ios"
+      "android"
     ]
   },
   "scripts": {
@@ -23,8 +22,7 @@
     "node.js",
     "nodejs-mobile",
     "ecosystem:cordova",
-    "cordova-android",
-    "cordova-ios"
+    "cordova-android"
   ],
   "author": "janeasystems",
   "license": "MIT",
@@ -48,8 +46,7 @@
         "cordova-android": ">=12.0.0"
       },
       "3.0.0": {
-        "cordova-android": ">=12.0.0",
-        "cordova-ios": ">=4.0.0"
+        "cordova-android": ">=12.0.0"
       }
     }
   },
