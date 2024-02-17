@@ -18,6 +18,7 @@
 
   // Configure tool-specific properties.
   "customizations": {
+<<<<<<< Updated upstream
     "extensions": [
       "eamodio.gitlens",
       "streetsidesoftware.code-spell-checker",
@@ -26,6 +27,18 @@
       "GitHub.vscode-pull-request-github",
       "redhat.vscode-yaml"
     ]
+=======
+    "vscode": {
+      "extensions": [
+        "eamodio.gitlens",
+        "streetsidesoftware.code-spell-checker",
+        "esbenp.prettier-vscode",
+        "emeraldwalk.RunOnSave",
+        "GitHub.vscode-pull-request-github",
+        "redhat.vscode-yaml"
+      ]
+    },
+>>>>>>> Stashed changes
   },
 
   // Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
