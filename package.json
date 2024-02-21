@@ -30,7 +30,7 @@
   "license": "MIT",
   "dependencies": {
     "node-gyp-build-mobile": "4.6.0-3",
-    "nodejs-mobile-gyp": "0.3.1",
+    "nodejs-mobile-gyp": "0.4.0",
     "tar.gz2": "1.0.0",
     "xcode": "2.1.0"
   },
