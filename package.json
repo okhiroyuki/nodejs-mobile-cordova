@@ -13,7 +13,7 @@
     "build:node": "node zipLibNode.js",
     "test:clean": "rimraf testapp/node_modules testapp/plugins testapp/platforms testapp/temp-module-copy",
     "test:install": "cd testapp && npm i",
-    "test:android": "cd testapp && cordova platform add android && cordova prepare android && cordova build",
+    "test:android": "cd testapp && npx cordova platform add android && npx cordova prepare android && npx cordova build",
     "test:build": "run-s test:clean test:install test:android"
   },
   "keywords": [
