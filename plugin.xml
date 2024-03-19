@@ -22,6 +22,8 @@
     <clobbers target="nodejs_events" />
   </js-module>
 
+  <hook type="after_plugin_add" src="install/hooks/both/after-plugin-install-copy-helper-scripts.js" />
+
   <!-- ios -->
   <platform name="ios">
 
