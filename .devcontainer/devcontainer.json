@@ -3,25 +3,24 @@
 {
   "name": "Node.js & Android",
   // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-  "image": "mcr.microsoft.com/devcontainers/javascript-node:1-18-bullseye",
+  "image": "ghcr.io/okhiroyuki/docker-cordova:latest",
+  "mounts":[
+    "source=node_modules_${devcontainerId},target=${containerWorkspaceFolder}/node_modules,type=volume",
+    "source=testapp_node_modules_${devcontainerId},target=${containerWorkspaceFolder}/testapp/node_modules,type=volume",
+    "source=testapp_platforms_${devcontainerId},target=${containerWorkspaceFolder}/testapp/platforms,type=volume",
+    "source=testapp_plugins_${devcontainerId},target=${containerWorkspaceFolder}/testapp/plugins,type=volume",
+    "source=testapp_temp-module-copy_${devcontainerId},target=${containerWorkspaceFolder}/testapp/temp-module-copy,type=volume"
+  ],
 
   // Features to add to the dev container. More info: https://containers.dev/features.
-  "features": {
-    "ghcr.io/devcontainers/features/java:1": {
-      "version": "17",
-      "installGradle": true
-    },
-    "ghcr.io/akhildevelops/devcontainer-features/android-cli:0": {
-      "PACKAGES": "platform-tools,platforms;android-33,build-tools;33.0.2,ndk-bundle,ndk;24.0.8215888,cmake;3.22.1"
-    }
-  },
+  "features": {},
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
 
   // Use 'postCreateCommand' to run commands after the container is created.
   // "postCreateCommand": "yarn install",
-  "postAttachCommand": "npm ci",
+  "postAttachCommand": "sudo chown node node_modules testapp/node_modules testapp/platforms testapp/plugins testapp/temp-module-copy &&  npm ci",
 
   // Configure tool-specific properties.
   "customizations": {
