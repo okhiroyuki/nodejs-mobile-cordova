@@ -4,9 +4,9 @@
   "name": "Node.js & Android",
   // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
   "image": "ghcr.io/okhiroyuki/docker-cordova:v0.1.0",
-  // "mounts": [
-  //   "source=node_modules_${devcontainerId},target=${containerWorkspaceFolder}/node_modules,type=volume"
-  // ],
+  "mounts": [
+    "source=node_modules_${devcontainerId},target=${containerWorkspaceFolder}/node_modules,type=volume"
+  ],
   // Features to add to the dev container. More info: https://containers.dev/features.
   "features": {},
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
