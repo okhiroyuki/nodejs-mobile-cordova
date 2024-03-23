@@ -3,7 +3,7 @@
 {
   "name": "Node.js & Android",
   // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-  "image": "ghcr.io/okhiroyuki/docker-cordova:latest",
+  "image": "ghcr.io/okhiroyuki/docker-cordova:v0.1.0",
   "mounts": [
     "source=node_modules_${devcontainerId},target=${containerWorkspaceFolder}/node_modules,type=volume"
   ],
