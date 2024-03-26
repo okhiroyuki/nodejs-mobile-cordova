@@ -3,12 +3,20 @@
 {
   "name": "Node.js & Android",
   // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-  "image": "ghcr.io/okhiroyuki/docker-cordova:v0.1.0",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:1-18",
+  // Features to add to the dev container. More info: https://containers.dev/features.
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "17",
+      "installGradle": true
+    },
+    "ghcr.io/akhildevelops/devcontainer-features/android-cli:0": {
+      "PACKAGES": "platform-tools,platforms;android-33,build-tools;33.0.2,ndk-bundle,ndk;24.0.8215888,cmake;3.22.1"
+    }
+  },
   "mounts": [
     "source=node_modules_${devcontainerId},target=${containerWorkspaceFolder}/node_modules,type=volume"
   ],
-  // Features to add to the dev container. More info: https://containers.dev/features.
-  "features": {},
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],
   // Use 'postCreateCommand' to run commands after the container is created.
