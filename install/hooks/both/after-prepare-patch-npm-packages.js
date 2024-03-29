@@ -20,7 +20,7 @@ function patchPackageJSON_preNodeGyp_modulePath(filePath) {
   let packageJSON = JSON.parse(packageReadData);
   if (packageJSON?.binary?.module_path) {
     const binaryPathConfiguration = getBinaryPathConfiguration(
-      packageJSON.binary.module_path
+      packageJSON.binary.module_path,
     );
     packageJSON.binary.module_path = binaryPathConfiguration;
     const packageWriteData = JSON.stringify(packageJSON, null, 2);
@@ -42,7 +42,7 @@ function patchPackageJSONNodeGypBuild(packageJSONPath) {
     if (packageJSON?.scripts?.install?.includes("node-gyp-build")) {
       packageJSON.scripts.install = packageJSON.scripts.install.replace(
         /node-gyp-build(?!-)/g,
-        "$PROJECT_DIR/../node_modules/.bin/node-gyp-build-mobile"
+        "$PROJECT_DIR/../node_modules/.bin/node-gyp-build-mobile",
       );
       fs.writeFileSync(packageJSONPath, JSON.stringify(packageJSON, null, 2));
     }
@@ -68,7 +68,7 @@ function visitPackageJSON(folderPath) {
           'Failed to patch the file : "' +
             filePath +
             '". The following error was thrown: ' +
-            JSON.stringify(e)
+            JSON.stringify(e),
         );
       }
     }
@@ -80,7 +80,7 @@ function patchTargetPlatform(context, platform) {
   const platformPath = path.join(
     context.opts.projectRoot,
     "platforms",
-    platform
+    platform,
   );
   const platformAPI = require(path.join(platformPath, "cordova", "Api"));
   let platformAPIInstance;
@@ -93,7 +93,7 @@ function patchTargetPlatform(context, platform) {
   const nodeModulesPathToPatch = path.join(
     wwwPath,
     "nodejs-project",
-    "node_modules"
+    "node_modules",
   );
   if (fs.existsSync(nodeModulesPathToPatch)) {
     visitPackageJSON(nodeModulesPathToPatch);

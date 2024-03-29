@@ -1,4 +1,3 @@
-
 var htmlReporter;
 var env;
 
@@ -35,11 +34,15 @@ function setUpJasmine() {
    */
 
   var queryString = new jasmine.QueryString({
-    getWindowLocation: function() { return window.location; }
+    getWindowLocation: function () {
+      return window.location;
+    },
   });
 
   var catchingExceptions = queryString.getParam("catch");
-  env.catchExceptions(typeof catchingExceptions === "undefined" ? true : catchingExceptions);
+  env.catchExceptions(
+    typeof catchingExceptions === "undefined" ? true : catchingExceptions,
+  );
 
   var throwingExpectationFailures = queryString.getParam("throwFailures");
   env.throwOnExpectationFailure(throwingExpectationFailures);
@@ -58,14 +61,31 @@ function setUpJasmine() {
    */
   htmlReporter = new jasmine.HtmlReporter({
     env: env,
-    onRaiseExceptionsClick: function() { queryString.navigateWithNewParam("catch", !env.catchingExceptions()); },
-    onThrowExpectationsClick: function() { queryString.navigateWithNewParam("throwFailures", !env.throwingExpectationFailures()); },
-    onRandomClick: function() { queryString.navigateWithNewParam("random", !env.randomTests()); },
-    addToExistingQueryString: function(key, value) { return queryString.fullStringWithNewParam(key, value); },
-    getContainer: function() { return document.getElementById('jasminecontent'); },
-    createElement: function() { return document.createElement.apply(document, arguments); },
-    createTextNode: function() { return document.createTextNode.apply(document, arguments); },
-    timer: new jasmine.Timer()
+    onRaiseExceptionsClick: function () {
+      queryString.navigateWithNewParam("catch", !env.catchingExceptions());
+    },
+    onThrowExpectationsClick: function () {
+      queryString.navigateWithNewParam(
+        "throwFailures",
+        !env.throwingExpectationFailures(),
+      );
+    },
+    onRandomClick: function () {
+      queryString.navigateWithNewParam("random", !env.randomTests());
+    },
+    addToExistingQueryString: function (key, value) {
+      return queryString.fullStringWithNewParam(key, value);
+    },
+    getContainer: function () {
+      return document.getElementById("jasminecontent");
+    },
+    createElement: function () {
+      return document.createElement.apply(document, arguments);
+    },
+    createTextNode: function () {
+      return document.createTextNode.apply(document, arguments);
+    },
+    timer: new jasmine.Timer(),
   });
 
   /**
@@ -78,10 +98,12 @@ function setUpJasmine() {
    * Filter which specs will be run by matching the start of the full name against the `spec` query param.
    */
   var specFilter = new jasmine.HtmlSpecFilter({
-    filterString: function() { return queryString.getParam("spec"); }
+    filterString: function () {
+      return queryString.getParam("spec");
+    },
   });
 
-  env.specFilter = function(spec) {
+  env.specFilter = function (spec) {
     return specFilter.matches(spec.getFullName());
   };
 
@@ -102,10 +124,10 @@ function setUpJasmine() {
   }
 }
 
-document.addEventListener('deviceready', function () {
-  'use strict';
+document.addEventListener("deviceready", function () {
+  "use strict";
 
-  cordova.require('nodejs-mobile-cordova-tests.tests').defineAutoTests(); // eslint-disable-line no-undef
+  cordova.require("nodejs-mobile-cordova-tests.tests").defineAutoTests(); // eslint-disable-line no-undef
 
   htmlReporter.initialize();
   env.execute();

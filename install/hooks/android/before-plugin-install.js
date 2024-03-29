@@ -1,13 +1,14 @@
-var fs = require('fs');
-var zlib = require('zlib');
+var fs = require("fs");
+var zlib = require("zlib");
 
-const nodeProjectFolder = 'www/nodejs-project';
-const libFolderPath = 'plugins/@red-mobile/nodejs-mobile-cordova/libs/android/libnode/bin/';
-const path_armv7 = libFolderPath + 'armeabi-v7a/';
-const path_arm64 = libFolderPath + 'arm64-v8a/';
-const path_x64 = libFolderPath + 'x86_64/'
-const lib_name = 'libnode.so';
-const lib_name_gz = lib_name + '.gz';
+const nodeProjectFolder = "www/nodejs-project";
+const libFolderPath =
+  "plugins/@red-mobile/nodejs-mobile-cordova/libs/android/libnode/bin/";
+const path_armv7 = libFolderPath + "armeabi-v7a/";
+const path_arm64 = libFolderPath + "arm64-v8a/";
+const path_x64 = libFolderPath + "x86_64/";
+const lib_name = "libnode.so";
+const lib_name_gz = lib_name + ".gz";
 
 function unzip(libFolderPath, callback) {
   const input_filename = libFolderPath + lib_name_gz;
@@ -18,23 +19,27 @@ function unzip(libFolderPath, callback) {
     const output = fs.createWriteStream(output_filename);
 
     const ungzip = zlib.createGunzip();
-    input.pipe(ungzip)
-        .pipe(output)
-        .on('close', function(){ fs.unlinkSync(input_filename); callback() });
+    input
+      .pipe(ungzip)
+      .pipe(output)
+      .on("close", function () {
+        fs.unlinkSync(input_filename);
+        callback();
+      });
   }
 }
 
 function unzipAll(callback) {
-  unzip(path_armv7, function() {
-    unzip(path_arm64, function() {
-      unzip(path_x64, function() {
+  unzip(path_armv7, function () {
+    unzip(path_arm64, function () {
+      unzip(path_x64, function () {
         callback(null);
       });
     });
   });
 }
 
-module.exports = function(context) {
+module.exports = function (context) {
   // Create the node project folder if it doesn't exist
   if (!fs.existsSync(nodeProjectFolder)) {
     fs.mkdirSync(nodeProjectFolder);
@@ -42,12 +47,12 @@ module.exports = function(context) {
 
   return new Promise((resolve, reject) => {
     // Unzip the libnode.so files for each architecture
-    unzipAll(function(err) {
-        if (err) {
+    unzipAll(function (err) {
+      if (err) {
         reject(err);
-        } else {
+      } else {
         resolve();
-        }
+      }
     });
   });
-}
+};

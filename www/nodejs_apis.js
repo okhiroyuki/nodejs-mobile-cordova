@@ -110,7 +110,7 @@ cordova.exec(
   allChannelsListener,
   "NodeJS",
   "setAllChannelsListener",
-  null
+  null,
 );
 
 /**
@@ -134,7 +134,7 @@ function startEngine(command, args, callback) {
     },
     "NodeJS",
     command,
-    [].concat(args)
+    [].concat(args),
   );
 }
 

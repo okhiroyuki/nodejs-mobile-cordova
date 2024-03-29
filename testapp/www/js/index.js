@@ -6,7 +6,7 @@ var app = {
     document.addEventListener(
       "deviceready",
       this.onDeviceReady.bind(this),
-      false
+      false,
     );
   },
 
@@ -47,7 +47,7 @@ function startNodeProject(startFile) {
       if (err === "Engine already started") {
         // Engine already started. Let the user go to the tests.
         showMessage(
-          "The nodejs-mobile engine is already started.<br/>Proceed to the tests."
+          "The nodejs-mobile engine is already started.<br/>Proceed to the tests.",
         );
         proceedToTests();
       } else {

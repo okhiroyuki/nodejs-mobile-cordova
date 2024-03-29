@@ -301,10 +301,10 @@ function startNodeProject() {
 Search for the `onDeviceReady` event and in the event handler add a call to `startNodeProject()`:
 
 ```js
-  onDeviceReady: function() {
-      this.receivedEvent('deviceready');
-      startNodeProject();
-  },
+onDeviceReady: function() {
+    this.receivedEvent('deviceready');
+    startNodeProject();
+},
 ```
 
 Save the changes to the `www/js/index.js` file to complete the manual steps of setting up the project files.

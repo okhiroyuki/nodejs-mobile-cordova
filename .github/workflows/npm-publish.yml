@@ -2,7 +2,7 @@ name: npm publish
 
 on:
   workflow_run:
-    workflows: [Build Android Project]
+    workflows: [Node.js]
     branches: [main]
     types: [completed]
 

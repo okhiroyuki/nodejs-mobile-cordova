@@ -149,7 +149,7 @@ class SystemChannel extends ChannelSuper {
           () => {
             NativeBridge.sendMessage(_this.name, releaseMessage);
           },
-          _this.listenerCount("pause") // A lock for each current event listener. All listeners need to call release().
+          _this.listenerCount("pause"), // A lock for each current event listener. All listeners need to call release().
         );
         _this.emitLocal("pause", eventLock);
       });

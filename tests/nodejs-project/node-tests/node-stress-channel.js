@@ -1,8 +1,8 @@
-const cordova = require('cordova-bridge');
-const TestBase = require('./test-base');
-const assert = require('assert');
+const cordova = require("cordova-bridge");
+const TestBase = require("./test-base");
+const assert = require("assert");
 
-let testName = 'node-stress-channel';
+let testName = "node-stress-channel";
 
 class TestNodeStressChannel extends TestBase {
   // Node side class to stress the channel.
@@ -10,8 +10,8 @@ class TestNodeStressChannel extends TestBase {
   static prepare() {
     let num_msgs_sent = 0;
     super.prepare(testName, (num_msgs) => {
-      for(let i=0;i<num_msgs;i++) {
-        cordova.channel.post('node-stress-channel', num_msgs_sent);
+      for (let i = 0; i < num_msgs; i++) {
+        cordova.channel.post("node-stress-channel", num_msgs_sent);
         num_msgs_sent++;
       }
     });

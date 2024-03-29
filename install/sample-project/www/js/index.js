@@ -1,29 +1,33 @@
 var app = {
   // Application Constructor
-  initialize: function() {
-      document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
+  initialize: function () {
+    document.addEventListener(
+      "deviceready",
+      this.onDeviceReady.bind(this),
+      false,
+    );
   },
 
   // deviceready Event Handler
   //
   // Bind any cordova events here. Common events are:
   // 'pause', 'resume', etc.
-  onDeviceReady: function() {
-      this.receivedEvent('deviceready');
-      startNodeProject();
+  onDeviceReady: function () {
+    this.receivedEvent("deviceready");
+    startNodeProject();
   },
 
   // Update DOM on a Received Event
-  receivedEvent: function(id) {
+  receivedEvent: function (id) {
     var parentElement = document.getElementById(id);
-    var listeningElement = parentElement.querySelector('.listening');
-    var receivedElement = parentElement.querySelector('.received');
+    var listeningElement = parentElement.querySelector(".listening");
+    var receivedElement = parentElement.querySelector(".received");
 
-    listeningElement.setAttribute('style', 'display:none;');
-    receivedElement.setAttribute('style', 'display:block;');
+    listeningElement.setAttribute("style", "display:none;");
+    receivedElement.setAttribute("style", "display:block;");
 
-    console.log('Received Event: ' + id);
-  }
+    console.log("Received Event: " + id);
+  },
 };
 
 app.initialize();
@@ -33,21 +37,31 @@ app.initialize();
 // - the string type
 // But any other valid JavaScript type can be handled if desired.
 function channelListener(msg) {
-  if (typeof msg === 'string') {
+  if (typeof msg === "string") {
     console.log('[cordova] MESSAGE from Node: "' + msg + '"');
-  } else if (typeof msg === 'object') {
-    console.log('[cordova] MESSAGE from Node: "' + msg.reply + '" - In reply to: "' + msg.original + '"');
+  } else if (typeof msg === "object") {
+    console.log(
+      '[cordova] MESSAGE from Node: "' +
+        msg.reply +
+        '" - In reply to: "' +
+        msg.original +
+        '"',
+    );
   } else {
-    console.log('[cordova] unexpected object type: ' + typeof msg);
+    console.log("[cordova] unexpected object type: " + typeof msg);
   }
-};
+}
 
 // Events listener
 function startedEventistener(msg) {
   if (msg) {
-    if (typeof msg === 'string') {
-      console.log('[cordova] "STARTED" event received from Node with a message: "' + msg + '"');
-    } else if (typeof msg === 'object') {
+    if (typeof msg === "string") {
+      console.log(
+        '[cordova] "STARTED" event received from Node with a message: "' +
+          msg +
+          '"',
+      );
+    } else if (typeof msg === "object") {
       // Add your own logic there
     } else {
       console.log('[cordova] "unexpected object type: ' + typeof msg);
@@ -55,7 +69,7 @@ function startedEventistener(msg) {
   } else {
     console.log('[cordova] "STARTED" event received from Node');
   }
-};
+}
 
 // This is the callback passed to 'nodejs.start()' to be notified if the Node.js
 // engine has started successfully.
@@ -63,22 +77,22 @@ function startupCallback(err) {
   if (err) {
     console.log(err);
   } else {
-    console.log ('Node.js Mobile Engine started');
+    console.log("Node.js Mobile Engine started");
     // Send a message to the Node.js app. The reply from the Node.js app will be
     // processed by the message channel listener 'channelListener()`.
-    nodejs.channel.send('Hello from Cordova!');
+    nodejs.channel.send("Hello from Cordova!");
 
     // Send a sample event to the Node.js app.
-    nodejs.channel.post('myevent', 'An event from Cordova');
+    nodejs.channel.post("myevent", "An event from Cordova");
   }
-};
+}
 
 // The entry point to start the Node.js app.
 function startNodeProject() {
   // Register the callbacks for the message channel and for the events channel
   // before starting the Node.js engine.
   nodejs.channel.setListener(channelListener);
-  nodejs.channel.on('started', startedEventistener);
+  nodejs.channel.on("started", startedEventistener);
 
   // As an alternative to 'nodejs.channel.setListener', the 'nodejs.channel.on'
   // method can be used:
@@ -86,7 +100,7 @@ function startNodeProject() {
 
   // Start the Node.js for Mobile Apps engine, passing the main script filename
   // and a callback to receive the result of the startup process.
-  nodejs.start('main.js', startupCallback);
+  nodejs.start("main.js", startupCallback);
   // To disable the stdout/stderr redirection to the Android logcat:
   // nodejs.start('main.js', startupCallback, { redirectOutputToLogcat: false });
-};
+}
