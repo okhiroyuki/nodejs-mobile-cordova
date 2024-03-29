@@ -18,3 +18,4 @@ tests/
 testapp/
 
 zipLibNode.js
+renovate.json
