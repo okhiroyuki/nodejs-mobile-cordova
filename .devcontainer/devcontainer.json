@@ -27,7 +27,6 @@
     "vscode": {
       "extensions": [
         "usernamehw.errorlens",
-        "eamodio.gitlens",
         "streetsidesoftware.code-spell-checker",
         "EditorConfig.EditorConfig",
         "redhat.vscode-yaml",
