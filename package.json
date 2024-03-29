@@ -17,7 +17,7 @@
     "build:clean": "rimraf testapp/node_modules testapp/plugins testapp/platforms testapp/temp-module-copy",
     "build:install": "cd testapp && npm i",
     "build:android": "cd testapp && npx cordova platform add android && npx cordova prepare android && npx cordova build",
-    "build": "run-s test:clean test:install test:android"
+    "build": "run-s build:clean build:install build:android"
   },
   "keywords": [
     "cordova",
