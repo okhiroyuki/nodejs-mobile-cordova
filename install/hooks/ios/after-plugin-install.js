@@ -2,23 +2,23 @@ var path = require("path");
 var fs = require("fs");
 
 module.exports = function (context) {
-	var xcode = require("xcode");
+  var xcode = require("xcode");
 
-	// Require the iOS platform Api to get the Xcode .pbxproj path.
-	var iosPlatformPath = path.join(context.opts.projectRoot, "platforms", "ios");
-	var iosAPI = require(path.join(iosPlatformPath, "cordova", "Api"));
-	var iosAPIInstance = new iosAPI("ios", iosPlatformPath);
-	var pbxprojPath = iosAPIInstance.locations.pbxproj;
+  // Require the iOS platform Api to get the Xcode .pbxproj path.
+  var iosPlatformPath = path.join(context.opts.projectRoot, "platforms", "ios");
+  var iosAPI = require(path.join(iosPlatformPath, "cordova", "Api"));
+  var iosAPIInstance = new iosAPI("ios", iosPlatformPath);
+  var pbxprojPath = iosAPIInstance.locations.pbxproj;
 
-	// Read the Xcode project and get the target.
-	var xcodeProject = xcode.project(pbxprojPath);
-	xcodeProject.parseSync();
-	var firstTargetUUID = xcodeProject.getFirstTarget().uuid;
+  // Read the Xcode project and get the target.
+  var xcodeProject = xcode.project(pbxprojPath);
+  xcodeProject.parseSync();
+  var firstTargetUUID = xcodeProject.getFirstTarget().uuid;
 
-	// Adds a build phase to rebuild native modules.
-	var rebuildNativeModulesBuildPhaseName =
-		"Build Node.js Mobile Native Modules";
-	var rebuildNativeModulesBuildPhaseScript = `
+  // Adds a build phase to rebuild native modules.
+  var rebuildNativeModulesBuildPhaseName =
+    "Build Node.js Mobile Native Modules";
+  var rebuildNativeModulesBuildPhaseScript = `
 set -e
 
 # On M1 macs homebrew is located outside /usr/local/bin
@@ -99,27 +99,27 @@ fi
 npm --verbose rebuild --build-from-source
 popd
 `;
-	var rebuildNativeModulesBuildPhase = xcodeProject.buildPhaseObject(
-		"PBXShellScriptBuildPhase",
-		rebuildNativeModulesBuildPhaseName,
-		firstTargetUUID,
-	);
-	if (!rebuildNativeModulesBuildPhase) {
-		xcodeProject.addBuildPhase(
-			[],
-			"PBXShellScriptBuildPhase",
-			rebuildNativeModulesBuildPhaseName,
-			firstTargetUUID,
-			{
-				shellPath: "/bin/zsh",
-				shellScript: rebuildNativeModulesBuildPhaseScript,
-			},
-		);
-	}
+  var rebuildNativeModulesBuildPhase = xcodeProject.buildPhaseObject(
+    "PBXShellScriptBuildPhase",
+    rebuildNativeModulesBuildPhaseName,
+    firstTargetUUID,
+  );
+  if (!rebuildNativeModulesBuildPhase) {
+    xcodeProject.addBuildPhase(
+      [],
+      "PBXShellScriptBuildPhase",
+      rebuildNativeModulesBuildPhaseName,
+      firstTargetUUID,
+      {
+        shellPath: "/bin/zsh",
+        shellScript: rebuildNativeModulesBuildPhaseScript,
+      },
+    );
+  }
 
-	// Adds a build phase to sign native modules.
-	var signNativeModulesBuildPhaseName = "Sign Node.js Mobile Native Modules";
-	var signNativeModulesBuildPhaseScript = `
+  // Adds a build phase to sign native modules.
+  var signNativeModulesBuildPhaseName = "Sign Node.js Mobile Native Modules";
+  var signNativeModulesBuildPhaseScript = `
 set -e
 
 # On M1 macs homebrew is located outside /usr/local/bin
@@ -176,21 +176,21 @@ find "$CODESIGNING_FOLDER_PATH/www/nodejs-project/" -name ".deps" -type d -delet
 find "$CODESIGNING_FOLDER_PATH/www/nodejs-project/" -path "*/*.framework/*" -delete
 find "$CODESIGNING_FOLDER_PATH/www/nodejs-project/" -name "*.framework" -type d -delete
 `;
-	var signNativeModulesBuildPhase = xcodeProject.buildPhaseObject(
-		"PBXShellScriptBuildPhase",
-		signNativeModulesBuildPhaseName,
-		firstTargetUUID,
-	);
-	if (!signNativeModulesBuildPhase) {
-		xcodeProject.addBuildPhase(
-			[],
-			"PBXShellScriptBuildPhase",
-			signNativeModulesBuildPhaseName,
-			firstTargetUUID,
-			{ shellPath: "/bin/zsh", shellScript: signNativeModulesBuildPhaseScript },
-		);
-	}
+  var signNativeModulesBuildPhase = xcodeProject.buildPhaseObject(
+    "PBXShellScriptBuildPhase",
+    signNativeModulesBuildPhaseName,
+    firstTargetUUID,
+  );
+  if (!signNativeModulesBuildPhase) {
+    xcodeProject.addBuildPhase(
+      [],
+      "PBXShellScriptBuildPhase",
+      signNativeModulesBuildPhaseName,
+      firstTargetUUID,
+      { shellPath: "/bin/zsh", shellScript: signNativeModulesBuildPhaseScript },
+    );
+  }
 
-	// Write the changes into the Xcode project.
-	fs.writeFileSync(pbxprojPath, xcodeProject.writeSync());
+  // Write the changes into the Xcode project.
+  fs.writeFileSync(pbxprojPath, xcodeProject.writeSync());
 };

@@ -4,6 +4,9 @@
   "markdown": {
   },
   "biome": {
+    "indentStyle": "space",
+    "indentSize": 2,
+    "lineEnding": "lf"
   },
   "excludes": [
     "**/*-lock.json",

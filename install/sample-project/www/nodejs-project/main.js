@@ -14,33 +14,33 @@ cordova.channel.post("started", "main.js loaded");
 // A sample object to show how the channel supports generic
 // JavaScript objects.
 class Reply {
-	constructor(replyMsg, originalMsg) {
-		this.reply = replyMsg;
-		this.original = originalMsg;
-	}
+  constructor(replyMsg, originalMsg) {
+    this.reply = replyMsg;
+    this.original = originalMsg;
+  }
 }
 
 // Listen to messages from Cordova.
 cordova.channel.on("message", (msg) => {
-	console.log('[node] MESSAGE received: "%s"', msg);
-	// Reply sending a user defined object.
-	cordova.channel.send(new Reply("Message received!", msg));
+  console.log('[node] MESSAGE received: "%s"', msg);
+  // Reply sending a user defined object.
+  cordova.channel.send(new Reply("Message received!", msg));
 });
 
 // Listen to event 'myevent' from Cordova.
 cordova.channel.on("myevent", (msg) => {
-	console.log('[node] MYEVENT received with message: "%s"', msg);
+  console.log('[node] MYEVENT received with message: "%s"', msg);
 });
 
 // Handle the 'pause' and 'resume' events.
 // These are events raised automatically when the app switched to the
 // background/foreground.
 cordova.app.on("pause", (pauseLock) => {
-	console.log("[node] app paused.");
-	pauseLock.release();
+  console.log("[node] app paused.");
+  pauseLock.release();
 });
 
 cordova.app.on("resume", () => {
-	console.log("[node] app resumed.");
-	cordova.channel.post("engine", "resumed");
+  console.log("[node] app resumed.");
+  cordova.channel.post("engine", "resumed");
 });
