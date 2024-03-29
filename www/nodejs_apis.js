@@ -148,7 +148,7 @@ function start(filename, callback, options) {
 
 function startWithScript(script, callback, options) {
   options = options || {};
-  startEngine([script, options], callback);
+  startEngine("startEngineWithScript", [script, options], callback);
 }
 
 function reset(callback) {
