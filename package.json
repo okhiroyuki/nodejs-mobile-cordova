@@ -11,10 +11,13 @@
   },
   "scripts": {
     "build:node": "node zipLibNode.js",
-    "test:clean": "rimraf testapp/node_modules testapp/plugins testapp/platforms testapp/temp-module-copy",
-    "test:install": "cd testapp && npm i",
-    "test:android": "cd testapp && npx cordova platform add android && npx cordova prepare android && npx cordova build",
-    "test:build": "run-s test:clean test:install test:android"
+    "fmt": "npx dprint fmt",
+    "check": "npx dprint check",
+    "test": "run-s check",
+    "build:clean": "rimraf testapp/node_modules testapp/plugins testapp/platforms testapp/temp-module-copy",
+    "build:install": "cd testapp && npm i",
+    "build:android": "cd testapp && npx cordova platform add android && npx cordova prepare android && npx cordova build",
+    "build": "run-s test:clean test:install test:android"
   },
   "keywords": [
     "cordova",
@@ -55,6 +58,7 @@
   },
   "devDependencies": {
     "cordova": "12.0.0",
+    "dprint": "^0.45.0",
     "npm-run-all2": "6.1.2",
     "rimraf": "5.0.5"
   }

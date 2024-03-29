@@ -17,17 +17,20 @@ git clone https://github.com/janeasystems/nodejs-mobile-cordova
 ### Install the cordova platforms and plugins
 
 Start by installing the npm dependencies:
+
 ```sh
 cd nodejs-mobile-cordova/testapp
 npm install
 ```
 
 Use the helper script to copy the "nodejs-mobile-cordova" plugin code that's in the parent directory to `testapp/temp-module-copy`, so cordova can install it:
+
 ```sh
 npm run copy-module
 ```
 
 Instruct the Cordova client to fetch and add every needed platform and plugin:
+
 ```sh
 cordova prepare
 ```

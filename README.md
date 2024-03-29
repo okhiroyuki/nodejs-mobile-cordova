@@ -167,11 +167,11 @@ Currently supports the 'pause' and 'resume' events, which are raised automatical
 
 ```js
 cordova.app.on("pause", (pauseLock) => {
-  console.log("[node] app paused.");
-  pauseLock.release();
+	console.log("[node] app paused.");
+	pauseLock.release();
 });
 cordova.app.on("resume", () => {
-  console.log("[node] app resumed.");
+	console.log("[node] app resumed.");
 });
 ```
 
@@ -179,10 +179,10 @@ The 'pause' event is raised when the application switches to the background. On 
 
 ```js
 cordova.app.on("pause", (pauseLock) => {
-  server.close(() => {
-    // App will only suspend after the server stops listening for connections and current connections are closed.
-    pauseLock.release();
-  });
+	server.close(() => {
+		// App will only suspend after the server stops listening for connections and current connections are closed.
+		pauseLock.release();
+	});
 });
 ```
 
@@ -263,8 +263,8 @@ Add the following code to `main.js` and save the file:
 const cordova = require("cordova-bridge");
 
 cordova.channel.on("message", function (msg) {
-  console.log("[node] received:", msg);
-  cordova.channel.send("Replying to this message: " + msg);
+	console.log("[node] received:", msg);
+	cordova.channel.send("Replying to this message: " + msg);
 });
 ```
 
@@ -278,33 +278,33 @@ Append the following code at the end of the file:
 
 ```js
 function channelListener(msg) {
-  console.log("[cordova] received:" + msg);
+	console.log("[cordova] received:" + msg);
 }
 
 function startupCallback(err) {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log("Node.js Mobile Engine Started");
-    nodejs.channel.send("Hello from Cordova!");
-  }
+	if (err) {
+		console.log(err);
+	} else {
+		console.log("Node.js Mobile Engine Started");
+		nodejs.channel.send("Hello from Cordova!");
+	}
 }
 
 function startNodeProject() {
-  nodejs.channel.setListener(channelListener);
-  nodejs.start("main.js", startupCallback);
-  // To disable the stdout/stderr redirection to the Android logcat:
-  // nodejs.start('main.js', startupCallback, { redirectOutputToLogcat: false });
+	nodejs.channel.setListener(channelListener);
+	nodejs.start("main.js", startupCallback);
+	// To disable the stdout/stderr redirection to the Android logcat:
+	// nodejs.start('main.js', startupCallback, { redirectOutputToLogcat: false });
 }
 ```
 
 Search for the `onDeviceReady` event and in the event handler add a call to `startNodeProject()`:
 
 ```js
-  onDeviceReady: function() {
-      this.receivedEvent('deviceready');
-      startNodeProject();
-  },
+onDeviceReady: function() {
+    this.receivedEvent('deviceready');
+    startNodeProject();
+},
 ```
 
 Save the changes to the `www/js/index.js` file to complete the manual steps of setting up the project files.
