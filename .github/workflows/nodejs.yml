@@ -5,9 +5,9 @@ on:
     branches: [main]
 
 env:
-  NODE_VERSION: 18
-  JAVA_VERSION: 11
-  JAVA_DISTRIBUTION: microsoft
+  NODE_VERSION: "18"
+  JAVA_VERSION: "11"
+  JAVA_DISTRIBUTION: "microsoft"
 
 jobs:
   test:
@@ -18,7 +18,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: $NODE_VERSION
+          node-version: ${{env.NODE_VERSION}}
       - name: npm test
         run: |
           npm ci
@@ -34,12 +34,12 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: $NODE_VERSION
+          node-version: ${{env.NODE_VERSION}}
       - name: set up JDK
         uses: actions/setup-java@v4
         with:
-          distribution: $JAVA_DISTRIBUTION
-          java-version: $JAVA_VERSION
+          distribution: ${{env.JAVA_DISTRIBUTION}}
+          java-version: ${{env.JAVA_VERSION}}
       - name: npm run build
         run: |
           npm ci
