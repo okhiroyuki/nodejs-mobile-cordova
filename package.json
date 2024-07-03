@@ -59,7 +59,7 @@
   "devDependencies": {
     "cordova": "12.0.0",
     "dprint": "0.47.0",
-    "npm-run-all2": "6.2.0",
+    "npm-run-all2": "6.2.1",
     "rimraf": "5.0.7"
   }
 }
