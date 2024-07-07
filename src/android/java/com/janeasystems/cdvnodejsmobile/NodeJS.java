@@ -582,16 +582,16 @@ public class NodeJS extends CordovaPlugin {
   }
 
   private static boolean getOptionRedirectOutputToLogcat(final JSONObject startOptions) {
-    if (BuildConfig.DEBUG) {
-      if (startOptions.names() != null) {
-        for (int i = 0; i < startOptions.names().length(); i++) {
-          try {
-            Log.d(LOGTAG, "Start engine option: " + startOptions.names().getString(i));
-          } catch (JSONException e) {
-          }
-        }
-      }
-    }
+    // if (BuildConfig.DEBUG) {
+    //   if (startOptions.names() != null) {
+    //     for (int i = 0; i < startOptions.names().length(); i++) {
+    //       try {
+    //         Log.d(LOGTAG, "Start engine option: " + startOptions.names().getString(i));
+    //       } catch (JSONException e) {
+    //       }
+    //     }
+    //   }
+    // }
 
     final String OPTION_NAME = "redirectOutputToLogcat";
     boolean result = true;
