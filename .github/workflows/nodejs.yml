@@ -5,7 +5,6 @@ on:
     branches: [main]
 
 env:
-  NODE_VERSION: "18"
   JAVA_VERSION: "17"
   JAVA_DISTRIBUTION: "microsoft"
 
@@ -18,7 +17,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{env.NODE_VERSION}}
+          node-version-file: ".node-version"
       - name: npm test
         run: |
           npm ci
@@ -34,7 +33,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{env.NODE_VERSION}}
+          node-version: ".node-version"
       - name: set up JDK
         uses: actions/setup-java@v4
         with:
