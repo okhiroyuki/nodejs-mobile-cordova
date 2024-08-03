@@ -1,7 +1,7 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["github>okhiroyuki/renovate-config"],
-  "forkProcessing": "enabled"
+  "forkProcessing": "enabled",
   "packageRules": [
     {
       "enabled": false,

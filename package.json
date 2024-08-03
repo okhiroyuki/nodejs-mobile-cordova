@@ -4,16 +4,10 @@
   "description": "Node.js for Mobile Apps Cordova plugin",
   "cordova": {
     "id": "@red-mobile/nodejs-mobile-cordova",
-    "platforms": [
-      "android",
-      "ios"
-    ]
+    "platforms": ["android", "ios"]
   },
   "scripts": {
     "build:node": "node zipLibNode.js",
-    "fmt": "npx dprint fmt",
-    "check": "npx dprint check",
-    "test": "run-s check",
     "build:clean": "rimraf testapp/node_modules testapp/plugins testapp/platforms testapp/temp-module-copy",
     "build:install": "cd testapp && npm i",
     "build:android": "cd testapp && npx cordova platform add android && npx cordova prepare android && npx cordova build",

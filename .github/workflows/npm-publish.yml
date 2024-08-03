@@ -1,6 +1,7 @@
+---
 name: npm publish
 
-on:
+"on":
   workflow_run:
     workflows: [Node.js]
     branches: [main]

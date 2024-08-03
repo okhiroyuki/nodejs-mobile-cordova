@@ -19,10 +19,7 @@
       "nodejs-mobile-cordova-tests": {},
       "@red-mobile/nodejs-mobile-cordova": {}
     },
-    "platforms": [
-      "ios",
-      "android"
-    ]
+    "platforms": ["ios", "android"]
   },
   "devDependencies": {
     "@red-mobile/nodejs-mobile-cordova": "file:temp-module-copy",
