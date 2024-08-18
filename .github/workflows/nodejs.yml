@@ -12,29 +12,33 @@ env:
 jobs:
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 1
     steps:
-      - name: Clone repo
-        uses: actions/checkout@v4
-      - name: Use Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
         with:
-          node-version: "18"
+          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          repository: okhiroyuki/composite-actions
+          path: ./.github/actions/composite-actions
+      - uses: ./.github/actions/composite-actions/setup-node
       - name: npm test
-        run: |
-          npm ci
-          npm test --if-present
+        run: npm test --if-present
         env:
           CI: true
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     needs: test
     steps:
-      - name: Clone repo
-        uses: actions/checkout@v4
-      - name: Use Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
         with:
-          node-version: "18"
+          fetch-depth: 0
+      - uses: actions/checkout@v4
+        with:
+          repository: okhiroyuki/composite-actions
+          path: ./.github/actions/composite-actions
+      - uses: ./.github/actions/composite-actions/setup-node
       - name: set up JDK
         uses: actions/setup-java@v4
         with:
@@ -42,7 +46,6 @@ jobs:
           java-version: ${{env.JAVA_VERSION}}
       - name: npm run build
         run: |
-          npm ci
           npm run build --if-present
         env:
           CI: true

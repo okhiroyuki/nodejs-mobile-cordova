@@ -7,10 +7,10 @@
     "ghcr.io/devcontainers/features/java:1": {
       "version": "17",
       "installGradle": true
+    },
+    "ghcr.io/akhildevelops/devcontainer-features/android-cli:0.0.2": {
+      "PACKAGES": "platform-tools,platforms;android-34,build-tools;34.0.0,ndk-bundle,ndk;24.0.8215888,cmake;3.22.1"
     }
-    // "ghcr.io/akhildevelops/devcontainer-features/android-cli:0": {
-    //   "PACKAGES": "platform-tools,platforms;android-33,build-tools;33.0.2,ndk-bundle,ndk;24.0.8215888,cmake;3.22.1"
-    // }
   },
   "mounts": [
     "source=node_modules_${devcontainerId},target=${containerWorkspaceFolder}/node_modules,type=volume",
