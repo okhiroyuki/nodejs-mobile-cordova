@@ -12,6 +12,7 @@ env:
 jobs:
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 1
     steps:
       - uses: actions/checkout@v4
         with:
@@ -27,6 +28,7 @@ jobs:
           CI: true
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     needs: test
     steps:
       - uses: actions/checkout@v4
