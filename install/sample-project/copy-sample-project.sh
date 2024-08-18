@@ -2,7 +2,7 @@
 SRC_PATH="plugins/@red-mobile/nodejs-mobile-cordova/install/sample-project"
 
 copySampleFile () {
-  cp -i "$SRC_PATH/$1" $1
+  cp -i "$SRC_PATH/$1" "$1"
 }
 
 mkdir -p "www/nodejs-project"
