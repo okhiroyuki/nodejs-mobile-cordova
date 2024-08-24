@@ -1,7 +1,6 @@
 {
   "markdown": {},
   "toml": {},
-  "dockerfile": {},
   "biome": {
     "indentStyle": "space",
     "indentSize": 2,
@@ -12,7 +11,6 @@
   "plugins": [
     "https://plugins.dprint.dev/markdown-0.17.6.wasm",
     "https://plugins.dprint.dev/toml-0.6.2.wasm",
-    "https://plugins.dprint.dev/dockerfile-0.3.2.wasm",
     "https://plugins.dprint.dev/biome-0.6.0.wasm",
     "https://plugins.dprint.dev/g-plane/pretty_yaml-v0.4.0.wasm"
   ]
