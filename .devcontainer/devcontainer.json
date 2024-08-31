@@ -8,8 +8,8 @@
       "version": "17",
       "installGradle": true
     },
-    "ghcr.io/akhildevelops/devcontainer-features/android-cli:0.0.2": {
-      "PACKAGES": "platform-tools,platforms;android-34,build-tools;34.0.0,ndk-bundle,ndk;24.0.8215888,cmake;3.22.1"
+    "ghcr.io/NordcomInc/devcontainer-features/android-sdk:1": {
+      "extra_packages": "ndk-bundle ndk;24.0.8215888 cmake;3.22.1"
     }
   },
   "mounts": [
