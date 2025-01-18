@@ -40,9 +40,11 @@ import org.gradle.internal.os.OperatingSystem;
 import org.gradle.util.GradleVersion;
 
 cdvPluginPostBuildExtras += { ->
-    // Set it to the supported architectures.
-    logger.info("nodejs-mobile-cordova were set [\"armeabi-v7a\", \"arm64-v8a\", \"x86_64\"] for ABI filters.");
-    android.defaultConfig.ndk.abiFilters = ["armeabi-v7a", "arm64-v8a", "x86_64"] as Set<String>;
+    if (android.defaultConfig.ndk.abiFilters.isEmpty()) {
+      // No abiFilter is defined for the build. Set it to the supported architectures.
+      logger.info("nodejs-mobile-cordova detected no ABI filters were set. Will use [\"armeabi-v7a\", \"arm64-v8a\", \"x86_64\"] for ABI filters.");
+      android.defaultConfig.ndk.abiFilters = ["armeabi-v7a", "arm64-v8a", "x86_64"] as Set<String>;
+    }
 
     // gzip files will cause errors with aapt. Remove them for improved npm compatibility.
     android.aaptOptions.ignoreAssetsPattern += ":!*.gz";
